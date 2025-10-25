@@ -1,4 +1,4 @@
-# Codesi: The Hinglish Programming Language
+# Codesi: The first of its kind Programming Language
 
 ![Codesi Logo Placeholder](assets/icon.ico)
 
