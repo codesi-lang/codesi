@@ -78,10 +78,10 @@ codesi
 
 ---
 
-#### 📱 Android Users (Termux)
+#### 📱 Android/iOS Users (Termux)
 
 ```bash
-# 1. Install Termux from Play Store or F-Droid
+# 1. Install Termux from Play Store/App Store or F-Droid
 # 2. Open Termux and run:
 
 apt update && apt upgrade -y
