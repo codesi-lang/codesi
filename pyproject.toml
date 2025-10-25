@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Codesi"
+version = "0.0.1"
+description = "First of its Kind Programming Language"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Rishaank Gupta", email = "site.rishaank@gmail.com"}
+]
+keywords = ["codesi", "hinglish", "hindi", "programming"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Github = "https://github.com/codesi-lang"
+
+[project.scripts]
+codesi = "codesi.cli:main"
+cds = "codesi.cli:main"

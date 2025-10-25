@@ -1,0 +1,729 @@
+# 🎯 Codesi Best Practices Guide
+
+Production-ready coding standards for Codesi programming language.
+
+## Table of Contents
+
+1. [Code Style](#code-style)
+2. [Naming Conventions](#naming-conventions)
+3. [Function Design](#function-design)
+4. [Error Handling](#error-handling)
+5. [Performance Tips](#performance-tips)
+6. [Security Guidelines](#security-guidelines)
+7. [Testing Best Practices](#testing-best-practices)
+8. [Documentation Standards](#documentation-standards)
+
+---
+
+## Code Style
+
+### ✅ DO: Use Consistent Indentation
+
+```hinglish
+// Good - 4 spaces
+agar (age >= 18) {
+    likho("Adult");
+    agar (age >= 65) {
+        likho("Senior Citizen");
+    }
+}
+
+// Bad - mixed indentation
+agar (age >= 18) {
+  likho("Adult");
+      agar (age >= 65) {
+    likho("Senior Citizen");
+  }
+}
+```
+
+### ✅ DO: Add Semicolons for Clarity
+
+```hinglish
+// Good
+x = 10;
+y = 20;
+result = x + y;
+
+// Works but less clear
+x = 10
+y = 20
+result = x + y
+```
+
+### ✅ DO: Use Blank Lines to Separate Logical Sections
+
+```hinglish
+// Good
+karya calculate_total(items) {
+    total = 0;
+    
+    har item mein items {
+        total = total + item.price;
+    }
+    
+    vapas total;
+}
+
+// Bad - cramped
+karya calculate_total(items) {
+    total = 0;
+    har item mein items {
+        total = total + item.price;
+    }
+    vapas total;
+}
+```
+
+### ✅ DO: Limit Line Length
+
+Keep lines under 80-100 characters:
+
+```hinglish
+// Good
+message = "This is a reasonably sized line that fits well";
+likho(message);
+
+// Bad - too long
+message = "This is an extremely long line that goes on and on and makes code hard to read and should be broken up into multiple lines for better readability";
+```
+
+### ❌ DON'T: Use Magic Numbers
+
+```hinglish
+// Bad
+agar (status == 1) {
+    likho("Active");
+}
+
+// Good
+const STATUS_ACTIVE = 1;
+const STATUS_INACTIVE = 0;
+
+agar (status == STATUS_ACTIVE) {
+    likho("Active");
+}
+```
+
+---
+
+## Naming Conventions
+
+### Variables: Use Descriptive Names
+
+```hinglish
+// ✅ Good
+student_name = "Rahul";
+total_marks = 450;
+is_passed = sach;
+
+// ❌ Bad
+sn = "Rahul";
+tm = 450;
+p = sach;
+```
+
+### Functions: Use Action Verbs
+
+```hinglish
+// ✅ Good
+karya calculate_average(marks) { ... }
+karya fetch_user_data(user_id) { ... }
+karya validate_email(email) { ... }
+
+// ❌ Bad
+karya average(marks) { ... }
+karya user(user_id) { ... }
+karya email(email) { ... }
+```
+
+### Constants: Use UPPERCASE
+
+```hinglish
+// ✅ Good
+const MAX_LOGIN_ATTEMPTS = 3;
+const API_TIMEOUT = 5000;
+const DEFAULT_LANGUAGE = "hindi";
+
+// ❌ Bad
+const max_login_attempts = 3;
+const apiTimeout = 5000;
+```
+
+### Classes: Use PascalCase (Capital First Letter)
+
+```hinglish
+// ✅ Good
+class StudentRecord { ... }
+class PaymentProcessor { ... }
+
+// ❌ Bad
+class student_record { ... }
+class paymentprocessor { ... }
+```
+
+### Hinglish-Specific Guidelines
+
+Use clear Hinglish words:
+
+```hinglish
+// ✅ Good - Clear meaning
+student_list = [];
+calculate_total_price();
+user_is_admin = sach;
+
+// ✅ Also Good - Mix Hindi/English naturally
+vidyarthi_list = [];
+kul_keemat_nikalo();
+user_admin_hai = sach;
+
+// ❌ Bad - Confusing abbreviations
+std_lst = [];
+calc_tot_pr();
+usr_adm = sach;
+```
+
+---
+
+## Function Design
+
+### Keep Functions Small and Focused
+
+```hinglish
+// ✅ Good - Single responsibility
+karya validate_age(age) {
+    vapas age >= 18 aur age <= 120;
+}
+
+karya get_user_category(age) {
+    agar (age < 18) { vapas "Minor"; }
+    agar (age < 65) { vapas "Adult"; }
+    vapas "Senior";
+}
+
+// ❌ Bad - Too many responsibilities
+karya process_user(age, name, email) {
+    agar (age < 18) { vapas "Minor"; }
+    agar (age < 65) { vapas "Adult"; }
+    name_upper = name.bada_karo();
+    email_valid = email.included_hai("@");
+    // Too much happening in one function!
+    vapas "Senior";
+}
+```
+
+### Use Default Parameters
+
+```hinglish
+// ✅ Good
+karya greet(name, greeting = "Namaste") {
+    vapas greeting + " " + name;
+}
+
+likho(greet("Raj"));              // Uses default
+likho(greet("Raj", "Hello"));     // Custom greeting
+
+// ❌ Bad - Manual default handling
+karya greet(name, greeting) {
+    agar (greeting == khaali) {
+        greeting = "Namaste";
+    }
+    vapas greeting + " " name;
+}
+```
+
+### Return Early to Reduce Nesting
+
+```hinglish
+// ✅ Good - Early returns
+karya process_payment(amount, balance) {
+    agar (amount <= 0) {
+        vapas "Invalid amount";
+    }
+    
+    agar (balance < amount) {
+        vapas "Insufficient balance";
+    }
+    
+    new_balance = balance - amount;
+    vapas "Payment successful";
+}
+
+// ❌ Bad - Deep nesting
+karya process_payment(amount, balance) {
+    agar (amount > 0) {
+        agar (balance >= amount) {
+            new_balance = balance - amount;
+            vapas "Payment successful";
+        } nahi_to {
+            vapas "Insufficient balance";
+        }
+    } nahi_to {
+        vapas "Invalid amount";
+    }
+}
+```
+
+### Use Pure Functions When Possible
+
+```hinglish
+// ✅ Good - Pure function (no side effects)
+karya calculate_discount(price, discount_percent) {
+    vapas price * (1 - discount_percent / 100);
+}
+
+// ❌ Bad - Modifies external state
+total_discount = 0;
+karya calculate_discount(price, discount_percent) {
+    discount = price * (discount_percent / 100);
+    total_discount = total_discount + discount;  // Side effect!
+    vapas price - discount;
+}
+```
+
+---
+
+## Error Handling
+
+### Always Handle Potential Errors
+
+```hinglish
+// ✅ Good
+karya divide_numbers(a, b) {
+    agar (b == 0) {
+        throw {message: "Cannot divide by zero"};
+    }
+    vapas a / b;
+}
+
+try {
+    result = divide_numbers(10, 0);
+} catch (error) {
+    likho("Error:", error.message);
+}
+
+// ❌ Bad - No error handling
+karya divide_numbers(a, b) {
+    vapas a / b;  // Crashes on division by zero
+}
+```
+
+### Use Try-Catch for File Operations
+
+```hinglish
+// ✅ Good
+try {
+    content = file_padho("data.txt");
+    data = json_parse(content);
+    likho("Data loaded successfully");
+} catch (error) {
+    likho("Failed to load data:", error.message);
+    data = {};  // Fallback to empty object
+}
+
+// ❌ Bad - No error handling
+content = file_padho("data.txt");
+data = json_parse(content);
+```
+
+### Provide Helpful Error Messages
+
+```hinglish
+// ✅ Good
+agar (age < 0 ya age > 150) {
+    throw {
+        message: "Age must be between 0 and 150",
+        code: "INVALID_AGE",
+        value: age
+    };
+}
+
+// ❌ Bad
+agar (age < 0 ya age > 150) {
+    throw {message: "Invalid"};  // Not helpful!
+}
+```
+
+---
+
+## Performance Tips
+
+### Use Early Termination in Loops
+
+```hinglish
+// ✅ Good - Stops when found
+karya find_user(users, target_id) {
+    har user mein users {
+        agar (user.id == target_id) {
+            vapas user;
+        }
+    }
+    vapas khaali;
+}
+
+// ❌ Bad - Checks all items
+karya find_user(users, target_id) {
+    found = khaali;
+    har user mein users {
+        agar (user.id == target_id) {
+            found = user;
+        }
+    }
+    vapas found;
+}
+```
+
+### Avoid Repeated Array Access
+
+```hinglish
+// ✅ Good - Cache array length
+karya sum_array(arr) {
+    total = 0;
+    len = arr.lambai();
+    
+    har i se 0 tak len {
+        total = total + arr[i];
+    }
+    
+    vapas total;
+}
+
+// ❌ Bad - Recalculates length every iteration
+karya sum_array(arr) {
+    total = 0;
+    har i se 0 tak arr.lambai() {  // arr.lambai() called repeatedly
+        total = total + arr[i];
+    }
+    vapas total;
+}
+```
+
+### Use Built-in Methods
+
+```hinglish
+// ✅ Good - Use built-in map
+numbers = [1, 2, 3, 4, 5];
+doubled = numbers.map(lambda(x) -> x * 2);
+
+// ❌ Bad - Manual loop (slower)
+numbers = [1, 2, 3, 4, 5];
+doubled = [];
+har num mein numbers {
+    doubled.push(num * 2);
+}
+```
+
+### Minimize Time Machine Snapshots in Loops
+
+```hinglish
+// ✅ Good - Snapshots outside loops
+karya process_large_data(items) {
+    time_machine_on(max=50);  // Limit snapshots
+    
+    har item mein items {
+        // Process item
+    }
+}
+
+// ❌ Bad - Too many snapshots
+karya process_large_data(items) {
+    time_machine_on(max=10000);  // Memory intensive!
+    har item mein items {
+        // Creates 10000 snapshots!
+    }
+}
+```
+
+---
+
+## Security Guidelines
+
+### Never Store Sensitive Data in Plain Text
+
+```hinglish
+// ❌ BAD - Never do this!
+password = "mypassword123";
+file_likho("config.txt", password);
+
+// ✅ Good - Use environment or secure storage
+// (Note: Implement proper encryption in production)
+password_hash = hash_password(password);  // Hypothetical function
+```
+
+### Validate User Input
+
+```hinglish
+// ✅ Good
+karya register_user(email, age) {
+    // Validate email
+    agar (nahi email.included_hai("@")) {
+        throw {message: "Invalid email format"};
+    }
+    
+    // Validate age
+    age_num = int_bnao(age);
+    agar (age_num < 13 ya age_num > 120) {
+        throw {message: "Age must be between 13 and 120"};
+    }
+    
+    // Process registration
+    vapas "Registration successful";
+}
+
+// ❌ Bad - No validation
+karya register_user(email, age) {
+    // Directly uses input without checks
+    save_to_database(email, age);
+}
+```
+
+### Limit Resource Usage
+
+```hinglish
+// ✅ Good - Set limits
+const MAX_FILE_SIZE = 1000000;  // 1MB
+const MAX_ARRAY_LENGTH = 10000;
+
+karya load_data(filename) {
+    size = file_size(filename);
+    agar (size > MAX_FILE_SIZE) {
+        throw {message: "File too large"};
+    }
+    vapas file_padho(filename);
+}
+
+// ❌ Bad - No limits
+karya load_data(filename) {
+    vapas file_padho(filename);  // Could load huge file!
+}
+```
+
+---
+
+## Testing Best Practices
+
+### Write Testable Functions
+
+```hinglish
+// ✅ Good - Pure, testable function
+karya calculate_tax(income, tax_rate) {
+    vapas income * (tax_rate / 100);
+}
+
+// Test cases:
+// calculate_tax(1000, 10) should return 100
+// calculate_tax(0, 10) should return 0
+// calculate_tax(1000, 0) should return 0
+
+// ❌ Bad - Depends on external state
+current_rate = 10;
+karya calculate_tax(income) {
+    vapas income * (current_rate / 100);  // Hard to test
+}
+```
+
+### Test Edge Cases
+
+```hinglish
+// Always test:
+// - Empty inputs
+// - Null/khaali values
+// - Zero values
+// - Negative numbers
+// - Very large numbers
+// - Boundary conditions
+
+karya safe_divide(a, b) {
+    // Edge case: division by zero
+    agar (b == 0) {
+        vapas khaali;
+    }
+    vapas a / b;
+}
+
+// Test edge cases:
+// safe_divide(10, 0) -> khaali
+// safe_divide(0, 10) -> 0
+// safe_divide(-10, 2) -> -5
+// safe_divide(10, 0.5) -> 20
+```
+
+### Use SAMJHO for Debugging Tests
+
+```hinglish
+// Enable explanation mode for debugging
+samjhao_on();
+
+karya test_calculator() {
+    result = calculate_tax(1000, 10);
+    agar (result == 100) {
+        likho("✅ Test passed");
+    } nahi_to {
+        likho("❌ Test failed: expected 100, got", result);
+    }
+}
+
+test_calculator();
+samjhao();  // See what happened
+```
+
+---
+
+## Documentation Standards
+
+### Document Function Purpose
+
+```hinglish
+// ✅ Good - Clear documentation
+// Function: Calculate final price after discount
+// Parameters: 
+//   - original_price: Original product price
+//   - discount_percent: Discount percentage (0-100)
+// Returns: Final price after discount
+// Example: calculate_final_price(1000, 20) -> 800
+karya calculate_final_price(original_price, discount_percent) {
+    discount = original_price * (discount_percent / 100);
+    vapas original_price - discount;
+}
+
+// ❌ Bad - No documentation
+karya calculate_final_price(original_price, discount_percent) {
+    discount = original_price * (discount_percent / 100);
+    vapas original_price - discount;
+}
+```
+
+### Document Complex Logic
+
+```hinglish
+// ✅ Good - Explains complex algorithm
+karya find_prime_numbers(limit) {
+    // Sieve of Eratosthenes algorithm
+    // Step 1: Create array of all numbers from 2 to limit
+    numbers = [];
+    har i se 2 tak limit {
+        numbers.push(sach);
+    }
+    
+    // Step 2: Mark multiples of each prime as non-prime
+    har i se 0 tak limit - 2 {
+        agar (numbers[i]) {
+            // Mark multiples as non-prime
+            har j se i + i + 2 tak limit {
+                numbers[j] = jhooth;
+            }
+        }
+    }
+    
+    // Step 3: Collect remaining primes
+    primes = [];
+    har i se 0 tak limit - 2 {
+        agar (numbers[i]) {
+            primes.push(i + 2);
+        }
+    }
+    
+    vapas primes;
+}
+```
+
+### Use Meaningful Comments
+
+```hinglish
+// ✅ Good comments - Explain WHY
+// Using binary search because array is sorted (O(log n) vs O(n))
+result = binary_search(sorted_array, target);
+
+// Adding 1 to convert from 0-indexed to 1-indexed for display
+display_position = array_index + 1;
+
+// ❌ Bad comments - Explain WHAT (obvious from code)
+// Assign 5 to x
+x = 5;
+
+// Loop through array
+har item mein array {
+    likho(item);
+}
+```
+
+---
+
+## Summary Checklist
+
+### Before Committing Code:
+
+- [ ] Code follows indentation standards (4 spaces)
+- [ ] Variable names are descriptive
+- [ ] Functions are small and focused
+- [ ] Error handling is implemented
+- [ ] No magic numbers (use constants)
+- [ ] Comments explain complex logic
+- [ ] Edge cases are handled
+- [ ] Code is tested with SAMJHO/Time Machine
+- [ ] Performance considerations applied
+- [ ] Security validations in place
+- [ ] Documentation is complete
+
+### Code Review Questions:
+
+1. Is the code easy to understand?
+2. Are variable/function names clear?
+3. Is error handling comprehensive?
+4. Are there any performance bottlenecks?
+5. Is the code properly documented?
+6. Are edge cases handled?
+7. Would a beginner understand this code?
+8. Is the code DRY (Don't Repeat Yourself)?
+
+---
+
+## Advanced Tips
+
+### Use JAADU Mode for Learning
+
+```bash
+# Enable JAADU for helpful corrections
+python codesi_production.py --jaadu
+```
+
+JAADU will automatically fix common typos and suggest corrections.
+
+### Leverage Time Machine for Complex Debugging
+
+```hinglish
+time_machine_on(max=100);
+
+// Run complex code
+har i se 0 tak 10 {
+    result = complex_calculation(i);
+    data.push(result);
+}
+
+// Time travel to find bugs
+peeche();  // Go back
+timeline();  // See history
+```
+
+### Combine SAMJHO with Time Machine
+
+```hinglish
+samjhao_on();
+time_machine_on();
+
+// Your code here
+x = 10;
+y = x * 2;
+z = y + 5;
+
+// Debug with both tools
+samjhao();   // See explanations
+peeche();    // Time travel
+timeline();  // See full timeline
+```
+
+---
+
+**Remember**: Good code is code that others (and future you) can understand easily!
+
+**Made with ❤️ by Rishaank Gupta**
