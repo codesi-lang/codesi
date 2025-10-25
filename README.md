@@ -106,7 +106,7 @@ Create `hello.cds`:
 
 ```codesi
 likho("Hello, World!")
-naam = sunao("Aapka naam kya hai? ")
+naam = input_lo("Aapka naam kya hai? ")
 likho("Namaste, " + naam + "!")
 ```
 
@@ -231,212 +231,6 @@ karya greet(naam) {
 
 ---
 
-## 💻 Complete Feature Set
-
-### 📊 Data Types
-
-```codesi
-// Numbers
-sankhya = 42
-decimal = 3.14
-
-// Strings
-message = "Hello, Codesi!"
-
-// Booleans
-hai_sach = sach
-hai_jhooth = jhooth
-
-// Null
-khaali_value = khaali
-
-// Arrays
-numbers = [1, 2, 3, 4, 5]
-mixed = [1, "hello", sach, [1, 2]]
-
-// Objects
-person = {
-    naam: "Rishaank",
-    age: 15,
-    skills: ["Python", "Codesi"]
-}
-```
-
-### 🔄 Control Flow
-
-```codesi
-// If-Elif-Else
-agar (score > 90) {
-    likho("A Grade")
-} ya_phir (score > 75) {
-    likho("B Grade")
-} nahi_to {
-    likho("C Grade")
-}
-
-// While Loop
-jabtak (count < 10) {
-    likho(count)
-    count += 1
-}
-
-// Do-While
-karo {
-    likho("Executing...")
-} jabtak (condition)
-
-// For Loop (Range)
-har i se 0 tak 10 {
-    likho(i)
-}
-
-// For-Each
-fruits = ["Apple", "Banana", "Mango"]
-har fruit mein fruits {
-    likho(fruit)
-}
-
-// Switch-Case
-status ke case mein {
-    200 -> likho("Success")
-    404 -> likho("Not Found")
-    500 -> likho("Server Error")
-    default -> likho("Unknown")
-}
-```
-
-### ⚡ Functions
-
-```codesi
-// Simple Function
-karya add(a, b) {
-    vapas a + b
-}
-
-// With Default Parameters
-karya greet(naam = "Guest") {
-    vapas "Hello, " + naam
-}
-
-// Variadic Functions
-karya sum(...numbers) {
-    total = 0
-    har num mein numbers {
-        total += num
-    }
-    vapas total
-}
-
-// Lambda Functions
-square = lambda(x) -> x * x
-result = square(5)  // 25
-```
-
-### 🏗️ Object-Oriented Programming
-
-```codesi
-// Class Definition
-class Person {
-    // Constructor
-    banao(naam, age) {
-        ye.naam = naam
-        ye.age = age
-    }
-    
-    // Methods
-    karya introduce() {
-        likho("Mera naam " + ye.naam + " hai")
-        likho("Meri age " + ye.age + " saal hai")
-    }
-    
-    // Static Methods
-    static karya create_guest() {
-        vapas new Person("Guest", 0)
-    }
-}
-
-// Inheritance
-class Student extends Person {
-    banao(naam, age, grade) {
-        super.banao(naam, age)
-        ye.grade = grade
-    }
-    
-    karya study() {
-        likho(ye.naam + " is studying")
-    }
-}
-
-// Usage
-student = new Student("Rishaank", 15, 10)
-student.introduce()
-student.study()
-```
-
-### 📦 Array Methods
-
-```codesi
-arr = [1, 2, 3, 4, 5]
-
-// Push/Pop
-arr.push(6)          // [1, 2, 3, 4, 5, 6]
-arr.pop()            // [1, 2, 3, 4, 5]
-
-// Map
-doubled = arr.map(lambda(x) -> x * 2)
-
-// Filter
-evens = arr.filter(lambda(x) -> x % 2 == 0)
-
-// Reduce
-sum = arr.reduce(lambda(a, b) -> a + b, 0)
-
-// Others
-arr.reverse()
-arr.sort()
-slice = arr.slice(1, 3)
-```
-
-### 📄 File Operations
-
-```codesi
-// Read File
-content = file_padho("data.txt")
-
-// Write File
-file_likho("output.txt", "Hello World")
-
-// Append
-file_append("log.txt", "New entry\n")
-
-// File Info
-hai = file_hai("test.txt")
-size = file_size("test.txt")
-
-// Directory Operations
-dir_banao("new_folder")
-files = dir_list(".")
-```
-
-### 🛡️ Error Handling
-
-```codesi
-try {
-    result = 10 / 0
-} catch(error) {
-    likho("Error: " + error.message)
-} finally {
-    likho("Cleanup code")
-}
-
-// Custom Errors
-agar (age < 0) {
-    throw {message: "Invalid age"}
-}
-```
-
----
-
 ## 🎓 Real-World Examples
 
 ### Example 1: Student Management System
@@ -462,10 +256,10 @@ class Student {
     }
     
     karya display() {
-        likho("Student: " + ye.naam)
-        likho("Roll: " + ye.roll)
-        likho("Marks: " + ye.marks)
-        likho("Grade: " + ye.calculate_grade())
+        likho("Student:", ye.naam)
+        likho("Roll:", ye.roll)
+        likho("Marks:", ye.marks)
+        likho("Grade:", ye.calculate_grade())
     }
 }
 
@@ -485,47 +279,87 @@ time_machine_on()
 
 // Buggy code - let's debug it
 balance = 1000
-likho("Initial: " + balance)
+likho("Initial:", balance)
 
 balance -= 200  // Withdrawal
-likho("After withdrawal: " + balance)
+likho("After withdrawal:", balance)
 
 balance -= 500  // Another withdrawal
-likho("After 2nd withdrawal: " + balance)
+likho("After 2nd withdrawal:", balance)
 
 balance -= 400  // ERROR: Insufficient balance!
 
 // Go back and check
 peeche(2)
-likho("Checking balance: " + balance)  // 800
+likho("Checking balance:", balance)  // 800
 
 // See complete timeline
 timeline()
 ```
 
-### Example 3: File Processing with JAADU
+### Example 3: File Processing with SAMJHAO
 
+**First, create `students.txt` with this data:**
+```
+Rishaank,95
+Raj,78
+Priya,82
+Amit,65
+Neha,91
+```
+
+**Now run this code:**
 ```codesi
-// JAADU will auto-correct typos
-samjhao_on()  // Enable explanations
+// Enable explanations
+samjhao_on()
 
-// Read file
-data = file_padho("students.txt")
-lines = data.todo("\n")
-
-// Process each line
-har line mein lines {
-    parts = line.todo(",")
-    naam = parts[0]
-    marks = int_bnao(parts[1])
+// Read and process file
+try {
+    data = file_padho("students.txt")
+    lines = data.split("\n")
     
-    agar (marks >= 75) {
-        likho(naam + " passed!")
+    likho("=== Student Results ===")
+    
+    // Process each line
+    har line mein lines {
+        agar (line != "") {
+            parts = line.split(",")
+            naam = parts[0]
+            marks = int_bnao(parts[1])
+            
+            agar (marks >= 75) {
+                likho(naam, "passed with", marks, "marks! ✅")
+            } nahi_to {
+                likho(naam, "needs improvement -", marks, "marks")
+            }
+        }
     }
+} catch(error) {
+    likho("Error:", error.message)
+    likho("Hint: students.txt file banao pehle!")
 }
 
 // See what happened
 samjhao()
+```
+
+**Expected Output:**
+```
+=== Student Results ===
+Rishaank passed with 95 marks! ✅
+Raj passed with 78 marks! ✅
+Priya passed with 82 marks! ✅
+Amit needs improvement - 65 marks
+Neha passed with 91 marks! ✅
+
+📖 Code Explanation:
+============================================================
+1. File 'students.txt' successfully read
+2. Data split into 5 lines
+3. Each line processed for name and marks
+4. Conditions evaluated for pass/fail
+5. Results displayed with formatting
+============================================================
 ```
 
 ---
@@ -568,7 +402,7 @@ likho("Hello")           // Print output
 
 ### Input Functions
 ```codesi
-naam = sunao("Name: ")          // String input
+naam = input_lo("Name: ")          // String input
 age = int_lo("Age: ")           // Integer input
 score = float_lo("Score: ")     // Float input
 ```
