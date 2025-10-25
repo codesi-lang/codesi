@@ -494,63 +494,16 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📝 License
 
-Codesi is open-source software licensed under the **MIT License**.
+Codesi is open-source software licensed under the [MIT License](LICENSE).
 
-See [LICENSE](LICENSE) for details.
+## 🛡️ Security
 
----
+If you discover any security vulnerabilities, please report them responsibly by following the guidelines in [SECURITY.md](SECURITY.md).
 
-## 🙏 Credits
+## 📜 Changelog
 
-**Creator**: Rishaank Gupta  
-**Development**: Entirely on mobile phone  
-**Inspiration**: Making programming accessible to Everyone
+Stay updated with the latest changes and improvements by checking our [CHANGELOG.md](CHANGELOG.md).
 
-### Special Thanks
+## 🙏 Acknowledgements
 
-- To all early testers and contributors
-- The Python community for inspiration
-- Everyone who believed in this vision
-
----
-
-## 📞 Contact & Support
-
-- **GitHub Issues**: [Report bugs or request features](https://github.com/codesi-lang/codesi/issues)
-- **Discussions**: [Join the community](https://discord.gg/codesilang)
-- **Email**: [codesilang@gmail.com](mailto:codesilang@gmail.com)
-
----
-
-## 🗺️ Roadmap
-
-### Version 0.0.1
-- ✅ Core language features
-- ✅ Time Machine debugger
-- ✅ JAADU auto-correction
-- ✅ Samjhao self-explanation
-- ✅ OOP support
-
----
-
-## 💡 Fun Facts
-
-- 🎓 Created by a 10th grade student
-- 📱 Entirely developed on a mobile phone
-- 🇮🇳 First Hinglish programming language
-- ⏰ First language with time-travel debugging
-- 🪄 First with built-in auto-correction
-- 🧠 First self-explaining language (no AI needed)
-
----
-
-<div align="center">
-
-**Made with ❤️ in India**
-
-[![GitHub stars](https://img.shields.io/github/stars/codesi-lang/Codesi?style=social)](https://github.com/codesi-lang/codesi/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/codesi-lang/Codesi?style=social)](https://github.com/codesi-lang/codesi/network/members)
-
-[⬆ Back to Top](#-codesi-programming-language)
-
-</div>
+A huge thank you to Rishaank Gupta for his vision and dedication in creating Codesi. This project is a testament to what passion and innovation can achieve.
