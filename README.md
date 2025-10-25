@@ -316,14 +316,14 @@ samjhao_on()
 // Read and process file
 try {
     data = file_padho("students.txt")
-    lines = data.split("\n")
+    lines = data.todo("\n")
     
     likho("=== Student Results ===")
     
     // Process each line
     har line mein lines {
         agar (line != "") {
-            parts = line.split(",")
+            parts = line.todo(",")
             naam = parts[0]
             marks = int_bnao(parts[1])
             
@@ -374,13 +374,17 @@ $ codesi
 ======================================================================
 
 📚 Commands:
-  exit() or quit()      - Exit REPL
-  help()               - Show help
-  vars()               - Show all variables
-  samjhao_on()         - Enable explanation mode
-  time_machine_on()    - Enable time travel
-  peeche() / aage()    - Time travel
-  --jaadu flag         - Enable auto-correction
+  help()                       // Show this help                 
+  qhelp()                      // Show quick reference            
+  license()                    // Show license info   
+  copyright()                  // Show copyright info     
+  credits()                    // Show credits & thanks            
+  exit() or quit()             // Exit REPL 
+  clear()                      // Clear screen 
+  vars()                       // Show all variables   
+  history()                    // Show command history 
+  !!                           // Repeat last command 
+  !5                           // Repeat command #5 from history   
 
 codesi:1> naam = "Rishaank"
 codesi:2> likho("Hello, " + naam)
@@ -526,16 +530,6 @@ See [LICENSE](LICENSE) for details.
 - ✅ JAADU auto-correction
 - ✅ Samjhao self-explanation
 - ✅ OOP support
-
----
-
-## 📊 Statistics
-
-- **Lines of Code**: 2000+
-- **Features**: 50+ unique features
-- **World Firsts**: 4 major innovations
-- **Development Time**: 6+ months
-- **Platform**: Pure Python (3.8+)
 
 ---
 
