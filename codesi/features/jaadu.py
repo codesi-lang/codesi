@@ -6,7 +6,7 @@ class CodesiJaadu:
     
     def __init__(self):
         self.hinglish_keywords = {
-            'likho', 'dikhao', 'batao', 'sunao', 'pucho', 'lo',
+            'likho','time_machine_status', 'time_machine_on', 'time_machine_off', 'peeche', 'aage', 'timeline', 'samjhao_on', 'samjhao_off', 'samjhao','input_lo', 'float_lo', 'int_lo', 'dikhao', 'batao', 'input', 'pucho', 'karya', 'static','import_karo','as', 'in' 'lo',
             'agar', 'nahi_to', 'ya_phir', 'jabtak', 'liye', 'karo',
             'karya', 'vapas', 'break', 'continue', 'class', 'banao',
             'ye', 'super', 'extends', 'new', 'try', 'catch', 'finally',
@@ -15,19 +15,14 @@ class CodesiJaadu:
         }
         
         self.common_functions = {
-            'likho', 'sunao', 'abs', 'sqrt', 'random', 'len', 'type_of',
-            'to_string', 'to_number', 'to_int', 'file_padho', 'file_likho',
-            'lambai', 'dohrao', 'mutlaq', 'vargmool', 'yaddrachik',
-            'print', 'dikhao', 'batao', 'pucho', 'lo', 'input',
-            'push', 'pop', 'shift', 'unshift', 'map', 'filter', 'reduce',
-            'dalo', 'jodo', 'nikalo', 'hatao', 'chuno', 'badlo'
+            'push', 'pop', 'shift', 'unshift', 'map', 'filter', 'reduce', 'dalo', 'jodo', 'nikalo', 'hatao', 'badlo', 'math_absolute', 'math_square', 'math_power', 'math_random', 'math_upar', 'math_gol', 'math_sin', 'math_cos', 'math_tan', 'math_log', 'math_exp', 'type_of', 'prakar', 'string_hai', 'array_hai', 'int_hai', 'float_hai', 'bool_hai', 'obj_hai', 'string_bnao', 'float_bnao', 'int_bnao', 'bool_bnao', 'lambai', 'range', 'repeatkr', 'file_padho', 'file_likho', 'file_append', 'file_hai', 'file_delete', 'file_copy', 'file_move', 'file_size', 'dir_banao', 'dir_list', 'json_stringify', 'json_parse', 'time_now', 'time_sleep', 'exit', 'quit', 'help', 'clear', 'vars', 'history',
+            'qhelp', 'credits', 'copyright', 'quit'
         }
         
         # REPL commands should NOT be corrected
         self.repl_commands = {
             'exit', 'quit', 'help', 'clear', 'vars', 'history',
-            'samjhao', 'samjhao_on', 'samjhao_off', 'explain',
-            'time_on', 'back', 'forward', 'timeline', 'peeche', 'aage'
+            'qhelp', 'credits', 'copyright', 'quit'
         }
         
         self.all_valid = self.hinglish_keywords | self.common_functions
