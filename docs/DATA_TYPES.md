@@ -536,4 +536,229 @@ has_name = person.hai_kya("naam")  // sach
 ### Iterate Objects
 
 ```codesi
-person = {naam: "Raj", umra:
+person = {naam: "Raj", umra: 25, city: "Mumbai"}
+
+har key mein person {
+    likho(key, ":", person[key])
+}
+// Output:
+// naam : Raj
+// umra : 25
+// city : Mumbai
+```
+
+---
+
+## 🔄 Type Conversion
+
+Codesi performs automatic type conversion in certain situations, but you can also do explicit conversions.
+
+### Automatic Conversion
+
+```codesi
+// String + Number (automatic conversion)
+result = "Hello " + 25        // "Hello 25"
+result = "Value: " + 3.14     // "Value: 3.14"
+
+// Boolean in conditions (automatic)
+x = 10
+agar (x) {  // Non-zero numbers are truthy
+    likho("x is truthy")
+}
+```
+
+### Explicit Conversion
+
+```codesi
+// To String
+text = string_bnao(123)       // "123"
+text = string_bnao(3.14)      // "3.14"
+text = string_bnao(sach)      // "sach"
+
+// To Integer
+num = int_bnao("123")         // 123
+num = int_bnao(3.14)          // 3
+num = int_bnao("42")          // 42
+
+// To Float
+num = float_bnao("3.14")      // 3.14
+num = float_bnao(5)           // 5.0
+num = float_bnao("42")        // 42.0
+
+// To Boolean
+bool_bnao(1)                  // sach
+bool_bnao(0)                  // jhooth
+bool_bnao("text")             // sach
+bool_bnao("")                 // jhooth
+```
+
+---
+
+## 🔍 Type Checking
+
+Check what type a value is using `prakar()` or `type_of()`:
+
+```codesi
+likho(prakar(10))             // "Integer"
+likho(prakar(3.14))           // "Float/Decimal"
+likho(prakar("hello"))        // "shabd"
+likho(prakar([1, 2]))         // "array"
+likho(prakar({a: 1}))         // "object"
+likho(prakar(sach))           // "sach_jhooth"
+likho(prakar(khaali))         // "khaali"
+
+// Type checking functions
+agar (string_hai(value)) {
+    likho("It's a string!")
+}
+
+agar (array_hai(data)) {
+    likho("It's an array!")
+}
+
+agar (int_hai(num)) {
+    likho("It's an integer!")
+}
+```
+
+---
+
+## 📊 Type Comparison Table
+
+| Codesi Type | Python Equivalent | Example |
+|-------------|-------------------|---------|
+| Integer | int | `10`, `-5`, `0` |
+| Float/Decimal | float | `3.14`, `-2.5` |
+| shabd (String) | str | `"hello"`, `'world'` |
+| sach (Boolean) | True | `sach` |
+| jhooth (Boolean) | False | `jhooth` |
+| khaali (Null) | None | `khaali` |
+| array | list | `[1, 2, 3]` |
+| object | dict | `{naam: "Raj"}` |
+| Function | function | `karya func() {}` |
+
+---
+
+## 💡 Best Practices
+
+### 1. Use Appropriate Types
+
+```codesi
+// ✅ Good - Clear types
+age = 15                    // Integer for age
+price = 99.99               // Float for money
+naam = "Rishaank"           // String for text
+is_active = sach            // Boolean for flags
+
+// ❌ Avoid mixing types unnecessarily
+age = "15"                  // String for age (confusing)
+```
+
+### 2. Explicit Type Conversion
+
+```codesi
+// ✅ Good - Explicit conversion
+user_input = input_lo("Enter number: ")
+number = int_bnao(user_input)
+
+// ❌ Risky - Assuming type
+result = user_input + 10    // Error if not a number
+```
+
+### 3. Check Types Before Operations
+
+```codesi
+// ✅ Good - Type checking
+karya process(value) {
+    agar (string_hai(value)) {
+        vapas value.bada_karo()
+    } ya_phir (int_hai(value)) {
+        vapas value * 2
+    } nahi_to {
+        vapas khaali
+    }
+}
+```
+
+### 4. Use khaali for Optional Values
+
+```codesi
+// ✅ Good - Clear intent
+result = khaali
+
+agar (found) {
+    result = "Found it!"
+}
+
+agar (result != khaali) {
+    likho(result)
+}
+```
+
+---
+
+## 🚨 Common Type Errors
+
+### Error 1: Type Mismatch in Operations
+
+```codesi
+// ❌ Wrong
+result = "hello" - 5        // Can't subtract from string
+
+// ✅ Correct
+result = "hello" + string_bnao(5)  // "hello5"
+```
+
+### Error 2: Division by Zero
+
+```codesi
+// ❌ Wrong
+result = 10 / 0             // Error!
+
+// ✅ Correct
+agar (divisor != 0) {
+    result = 10 / divisor
+} nahi_to {
+    likho("Cannot divide by zero")
+}
+```
+
+### Error 3: Array Index Out of Bounds
+
+```codesi
+// ❌ Wrong
+arr = [1, 2, 3]
+value = arr[10]             // Error!
+
+// ✅ Correct
+agar (index < arr.lambai()) {
+    value = arr[index]
+} nahi_to {
+    likho("Invalid index")
+}
+```
+
+---
+
+## 📚 Summary
+
+Codesi supports **7 main data types**:
+
+1. **Numbers** (Integer, Float)
+2. **Strings** (Text with quotes)
+3. **Booleans** (`sach`, `jhooth`)
+4. **Null** (`khaali`)
+5. **Arrays** (Ordered lists)
+6. **Objects** (Key-value pairs)
+7. **Functions** (First-class functions)
+
+**Key Features:**
+- ✅ Dynamic typing (variables can change types)
+- ✅ Automatic type conversion for strings + numbers
+- ✅ Rich type checking functions
+- ✅ Intuitive Hinglish keywords
+- ✅ Full support for nested structures
+
+---
+
+**Next**: [Control Flow Guide](CONTROL_FLOW.md)
