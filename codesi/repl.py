@@ -91,9 +91,10 @@ HELP_TEXT = """
     har i ke liye (0 se 5 tak) { likho(i); }
     har i se 0 tak 5 { likho(i); }
 
-    // ForEach loop (2 ways)
+    // ForEach loop (3 ways)
     har item mein array { likho(item); }
     har fruit ke liye fruits mein { likho(fruit); }
+    x ke liye array mein { likho(x); }
 
     // Loop control
     break;      // Exit loop
@@ -397,9 +398,9 @@ HELP_TEXT = """
   LEARN MORE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Documentation:  https://github.com/codesi-lang/docs
-  Examples:       https://github.com/codesi-lang/examples
-  Report Issues:  https://github.com/codesi-lang/issues
+  Documentation:  https://github.com/codesi-lang/codesi/tree/main/docs
+  Examples:       https://github.com/codesi-lang/codesi/tree/main/examples
+  Report Issues:  https://github.com/codesi-lang/codesi/issues
   Community:      https://discord.gg/codesi
 
   Type 'exit()' to quit REPL
@@ -483,8 +484,8 @@ def repl(jaadu_mode=False):
                 • Everyone who believed in accessible programming
 
               Want to Contribute?
-                GitHub: https://github.com/codesi-lang/contribute
-                Join our Discord: https://discord.gg/codesi-lang
+                GitHub: https://github.com/codesi-lang/codesi?tab=contributing-ov-file
+                Join our Discord: https://discord.gg/codesi
 
               Support Us:
                   Star us on GitHub

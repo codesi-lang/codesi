@@ -36,7 +36,7 @@ Complete installation instructions for Codesi Programming Language.
 
 ```bash
 # Clone the repository
-pip install codesi
+pip install codesi-lang
 
 # Test installation
 codesi --version
@@ -116,7 +116,7 @@ After installation:
 
 If you're still having issues:
 
-1. Check [GitHub Issues](https://github.com/codesi-lang)
+1. Check [GitHub Issues](https://github.com/codesi-lang/codesi/issues)
 2. Create a new issue with:
    - Your OS and Python version
    - Error message (full output)

@@ -530,7 +530,7 @@ You now know enough to start building real programs in Codesi!
 
 - **Documentation**: Check `docs/` folder
 - **Examples**: See `examples/` folder
-- **Issues**: [GitHub Issues](https://github.com/codesi-lang)
+- **Issues**: [GitHub Issues](https://github.com/codesi-lang/codesi/issues)
 - **Community**: GitHub Discussions
 
 ---

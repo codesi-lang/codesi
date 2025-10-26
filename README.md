@@ -70,7 +70,7 @@ For now, use Python installation:
 # Linux: sudo apt install python3
 
 # Install Codesi via pip
-pip install codesi
+pip install codesi-lang
 
 # Access Codesi
 codesi
@@ -86,7 +86,7 @@ codesi
 
 apt update && apt upgrade -y
 pkg install python
-pip install codesi
+pip install codesi-lang
 
 # Access Codesi
 codesi

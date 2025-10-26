@@ -872,7 +872,7 @@ likho("Mage Health:", mage.health)
 | Instance | `new` | Create object |
 | Method | `karya` | Class function |
 | Inheritance | `extends` | Inherit from parent |
-| Super | `super` | Access parent |
+| Super | `super.banao` | Access parent |
 | Self Reference | `ye` | Current object |
 | Static | `static` | Class-level method |
 
