@@ -91,10 +91,9 @@ HELP_TEXT = """
     har i ke liye (0 se 5 tak) { likho(i); }
     har i se 0 tak 5 { likho(i); }
 
-    // ForEach loop (3 ways)
+    // ForEach loop (2 ways)
     har item mein array { likho(item); }
     har fruit ke liye fruits mein { likho(fruit); }
-    x ke liye arr mein { likho(x); }
 
     // Loop control
     break;      // Exit loop
@@ -186,6 +185,9 @@ HELP_TEXT = """
   person.naam;                 // "Raj"
   person["umra"];              // 25
   person.phone = "9876543210"; // Add property
+  likho(person.keys());               
+  likho(person.values());             
+  likho(person.hai_kya("naam")); 
 
   // Methods
   person.keys();               // [naam, umra, city, phone]
@@ -211,8 +213,8 @@ HELP_TEXT = """
 
   // Create instance
   raj = new Person("Raj", 25);
-  raj.naam;                    // "Raj"
-  raj.intro();                 // "I am Raj"
+  likho(raj.naam);                    // "Raj"
+  likho(raj.intro());                 // "I am Raj"
 
   // Inheritance
   class Student extends Person {

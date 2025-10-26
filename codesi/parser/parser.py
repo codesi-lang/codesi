@@ -538,7 +538,16 @@ class CodesiParser:
                 expr = IndexAccess(expr, index)
             elif self.current_token().type == TokenType.DOT:
                 self.advance()
-                member = self.expect(TokenType.IDENTIFIER).value
+                # Allow keywords as member names (e.g., super.banao)
+                if self.current_token().type == TokenType.IDENTIFIER:
+                    member = self.current_token().value
+                    self.advance()
+                elif self.current_token().type == TokenType.BANAO:
+                    # Special case: allow 'banao' as a method name
+                    member = 'banao'
+                    self.advance()
+                else:
+                    member = self.expect(TokenType.IDENTIFIER).value
                 
                 # Check for member assignment
                 if self.current_token().type == TokenType.DEDO:
@@ -608,7 +617,12 @@ class CodesiParser:
         elif token.type == TokenType.SUPER:
             self.advance()
             self.expect(TokenType.DOT)
-            method_name = self.expect(TokenType.IDENTIFIER).value
+            # Allow 'banao' (constructor) or regular identifier as method name
+            if self.current_token().type == TokenType.BANAO:
+                method_name = 'banao'
+                self.advance()
+            else:
+                method_name = self.expect(TokenType.IDENTIFIER).value
             return Identifier('__super__.' + method_name)
         elif token.type == TokenType.IDENTIFIER:
             name = token.value
