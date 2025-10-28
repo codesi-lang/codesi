@@ -17,7 +17,7 @@
 
 ## 🌟 What Makes Codesi Revolutionary?
 
-Codesi isn't just another programming language—it's a **paradigm shift** in how we think about code. Created by a 15-year-old developer on a mobile phone, it introduces **multiple world-first features** that have never existed in any programming language before.
+Codesi isn't just another programming language—it's a **paradigm shift** in how we think about code. Created by a 13-year-old developer on a mobile phone, it introduces **multiple world-first features** that have never existed in any programming language before.
 
 ### 🎯 Core Innovation
 
