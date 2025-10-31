@@ -1,3 +1,4 @@
+import copy
 from ..interpreter.runtime import CodesiFunction, CodesiClass
 
 class CodesiTimeMachine:
@@ -67,29 +68,27 @@ class CodesiTimeMachine:
             if self.current_step > 1:
                 self.current_step -= 1
         
-        
-        if self.snapshots:
-            user_vars = {}
-            for k, v in self.snapshots[-1]['variables'].items():
-                if isinstance(v, list):
-                    user_vars[k] = v.copy()
-                elif isinstance(v, dict):
-                    user_vars[k] = v.copy()
-                else:
-                    user_vars[k] = v
-        else:
-            user_vars = {}
-        
-        
+        # Create user variables dict from current scope
+        user_vars = {}
         for k, v in scope.items():
+            # Skip built-in functions (but keep CodesiFunction and CodesiClass)
             if callable(v) and not isinstance(v, (CodesiFunction, CodesiClass)):
                 continue
             
-            if isinstance(v, list):
-                user_vars[k] = v.copy()
-            elif isinstance(v, dict):
-                user_vars[k] = v.copy()
-            else:
+            # Deep copy for nested structures (production-grade solution)
+            try:
+                if isinstance(v, (list, dict)):
+                    # Use deepcopy for nested arrays/objects
+                    user_vars[k] = copy.deepcopy(v)
+                elif isinstance(v, (CodesiFunction, CodesiClass)):
+                    # Don't copy functions/classes - store reference
+                    user_vars[k] = v
+                else:
+                    # For primitives (int, float, str, bool, None), direct assignment is fine
+                    user_vars[k] = v
+            except Exception:
+                # Fallback: if deepcopy fails for any reason, use reference
+                # This handles edge cases like objects with special attributes
                 user_vars[k] = v
         
         snapshot = {

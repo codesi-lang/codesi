@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Optional, Union
-import os, json, math, time, random, shutil, difflib
+import os, json, math, time, random, shutil, difflib, copy
 from ..lexer.tokens import TokenType
 from ..parser.ast_nodes import *
 from ..exceptions import *
@@ -25,7 +25,7 @@ class CodesiInterpreter:
         self.global_scope.update(get_builtins(self))
 
     def _time_travel_back(self, steps=1):
-        """Time travel backwards"""
+        """Time travel backwards with deep copy restoration"""
         snapshot_index = time_machine.go_back(steps)
         if isinstance(snapshot_index, str):
             print(snapshot_index)
@@ -35,31 +35,38 @@ class CodesiInterpreter:
         if not snap:
             return None
         
-        
+        # Preserve built-in functions
         builtin_names = set()
         for name, value in self.global_scope.items():
             if callable(value):
                 builtin_names.add(name)
         
-        
+        # Clear user variables
         to_delete = [k for k in self.current_scope.keys() if k not in builtin_names]
         for k in to_delete:
             del self.current_scope[k]
         
-        
+        # Restore variables with deep copy for nested structures
         for key, value in snap['variables'].items():
-            if isinstance(value, list):
-                self.current_scope[key] = value.copy()  
-            elif isinstance(value, dict):
-                self.current_scope[key] = value.copy()  
-            else:
+            try:
+                if isinstance(value, (list, dict)):
+                    # Deep copy to handle nested arrays/objects properly
+                    self.current_scope[key] = copy.deepcopy(value)
+                elif isinstance(value, (CodesiFunction, CodesiClass)):
+                    # Functions/classes stored by reference
+                    self.current_scope[key] = value
+                else:
+                    # Primitives can be assigned directly
+                    self.current_scope[key] = value
+            except Exception:
+                # Fallback for edge cases
                 self.current_scope[key] = value
         
         print(time_machine._show_snapshot(snapshot_index))
         return None
 
     def _time_travel_forward(self, steps=1):
-        """Time travel forwards"""
+        """Time travel forwards with deep copy restoration"""
         snapshot_index = time_machine.go_forward(steps)
         if isinstance(snapshot_index, str):
             print(snapshot_index)
@@ -69,24 +76,31 @@ class CodesiInterpreter:
         if not snap:
             return None
         
-       
+        # Preserve built-in functions
         builtin_names = set()
         for name, value in self.global_scope.items():
             if callable(value):
                 builtin_names.add(name)
         
-        
+        # Clear user variables
         to_delete = [k for k in self.current_scope.keys() if k not in builtin_names]
         for k in to_delete:
             del self.current_scope[k]
         
-       
+        # Restore variables with deep copy for nested structures
         for key, value in snap['variables'].items():
-            if isinstance(value, list):
-                self.current_scope[key] = value.copy()  
-            elif isinstance(value, dict):
-                self.current_scope[key] = value.copy()  
-            else:
+            try:
+                if isinstance(value, (list, dict)):
+                    # Deep copy to handle nested arrays/objects properly
+                    self.current_scope[key] = copy.deepcopy(value)
+                elif isinstance(value, (CodesiFunction, CodesiClass)):
+                    # Functions/classes stored by reference
+                    self.current_scope[key] = value
+                else:
+                    # Primitives can be assigned directly
+                    self.current_scope[key] = value
+            except Exception:
+                # Fallback for edge cases
                 self.current_scope[key] = value
         
         print(time_machine._show_snapshot(snapshot_index))

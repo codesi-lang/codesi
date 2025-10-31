@@ -267,9 +267,9 @@ likho("Vowels:", result)
 
 ## 🪄 Special Features
 
-### JAADU Auto-Correction
+### JAADU Context-Aware Auto-Correction
 
-Enable smart typo fixing:
+Enable smart typo fixing with revolutionary features:
 
 ```bash
 # Run with JAADU mode
@@ -278,10 +278,25 @@ codesi script.cds --jaadu
 
 Now if you write:
 ```codesi
-likho("Hello")  // Typo: likho
+liko("Hello")  // Typo: liko
 ```
 
 JAADU automatically fixes it to `likho()`!
+
+**What makes JAADU special:**
+- ✨ Context-aware: Methods vs Functions vs Keywords
+- ✨ Phonetic matching: `leekho` → `likho`
+- ✨ Method chains: `arr.mep().filtr()` → `arr.map().filter()`
+- ✨ Case insensitive: `LIKO` → `likho`
+- ✨ Dual language: Hindi + English method aliases
+- ✨ Corrects up to 3-4 character differences
+
+**More examples:**
+```codesi
+arr.pus(4)         // Method typo → arr.push(4)
+leekho("Test")     // Phonetic → likho("Test")
+arr.dlo(1)         // Hindi → arr.dalo(1) → arr.push(1)
+```
 
 ### Samjho (Explain Mode)
 

@@ -32,6 +32,20 @@ likho(x, y, z)
 **Parameters**: Any number of values  
 **Returns**: `khaali` (None)
 
+**Special Behavior**:
+- Multiple values are separated by spaces
+- Booleans are printed as `sach` (true) or `jhooth` (false)
+- `khaali` (null/none) is printed as the word "khaali"
+- Arrays and objects are formatted with brackets and braces
+
+**Examples**:
+```codesi
+likho(sach, jhooth)        // Output: sach jhooth
+likho(khaali)              // Output: khaali
+likho([1, 2, 3])           // Output: [1, 2, 3]
+likho({naam: "Raj"})       // Output: {naam: Raj}
+```
+
 ---
 
 ### input_lo(prompt)
@@ -469,15 +483,22 @@ likho(text.end_hota_hai("hello"))    // jhooth
 
 ## 📦 Array Methods
 
+**Note**: Most array methods support both **English** and **Hindi** names for flexibility!
+
 ### arr.push(element) / arr.dalo(element)
-Add element to end.
+Add element to end of array.
 
 ```codesi
 arr = [1, 2, 3]
-arr.push(4)
-likho(arr)    // [1, 2, 3, 4]
+arr.push(4)       // English version
+likho(arr)        // [1, 2, 3, 4]
+
+// Or use Hindi version
+arr.dalo(5)
+likho(arr)        // [1, 2, 3, 4, 5]
 ```
 
+**Aliases**: `push`, `dalo`  
 **Parameters**: Element to add  
 **Returns**: Modified array
 
@@ -488,11 +509,15 @@ Remove and return last element.
 
 ```codesi
 arr = [1, 2, 3]
-last = arr.pop()
-likho(last)    // 3
-likho(arr)     // [1, 2]
+last = arr.pop()     // English version
+likho(last)          // 3
+likho(arr)           // [1, 2]
+
+// Or use Hindi version
+last = arr.nikalo()
 ```
 
+**Aliases**: `pop`, `nikalo`  
 **Returns**: Removed element
 
 ---
@@ -502,24 +527,33 @@ Remove and return first element.
 
 ```codesi
 arr = [1, 2, 3]
-first = arr.shift()
-likho(first)    // 1
-likho(arr)      // [2, 3]
+first = arr.shift()        // English version
+likho(first)               // 1
+likho(arr)                 // [2, 3]
+
+// Or use Hindi version
+first = arr.pehla_nikalo()
 ```
 
+**Aliases**: `shift`, `pehla_nikalo`  
 **Returns**: Removed element
 
 ---
 
 ### arr.unshift(element) / arr.pehle_dalo(element)
-Add element to beginning.
+Add element to beginning of array.
 
 ```codesi
 arr = [2, 3, 4]
-arr.unshift(1)
-likho(arr)    // [1, 2, 3, 4]
+arr.unshift(1)      // English version
+likho(arr)          // [1, 2, 3, 4]
+
+// Or use Hindi version
+arr.pehle_dalo(0)
+likho(arr)          // [0, 1, 2, 3, 4]
 ```
 
+**Aliases**: `unshift`, `pehle_dalo`  
 **Parameters**: Element to add  
 **Returns**: Modified array
 
@@ -530,9 +564,11 @@ Get array length.
 
 ```codesi
 arr = [1, 2, 3, 4, 5]
-likho(arr.lambai())    // 5
+likho(arr.lambai())    // 5 (Hindi)
+likho(arr.size())      // 5 (English)
 ```
 
+**Aliases**: `lambai`, `size`  
 **Returns**: Integer length
 
 ---
@@ -551,8 +587,12 @@ karya square(x) {
 }
 squared = numbers.map(square)
 likho(squared)    // [1, 4, 9, 16, 25]
+
+// Hindi version also works
+doubled = numbers.badlo(lambda(x) -> x * 2)
 ```
 
+**Aliases**: `map`, `badlo`  
 **Parameters**: Function to apply to each element  
 **Returns**: New array with transformed elements
 
@@ -566,6 +606,9 @@ numbers = [1, 2, 3, 4, 5, 6]
 even = numbers.filter(lambda(x) -> x % 2 == 0)
 likho(even)    // [2, 4, 6]
 
+// Hindi version
+even = numbers.chuno(lambda(x) -> x % 2 == 0)
+
 // Complex filtering
 students = [
     {naam: "Raj", marks: 85},
@@ -575,6 +618,7 @@ students = [
 toppers = students.filter(lambda(s) -> s.marks >= 90)
 ```
 
+**Aliases**: `filter`, `chuno`  
 **Parameters**: Function returning boolean  
 **Returns**: New array with filtered elements
 
@@ -586,8 +630,12 @@ Reduce array to single value.
 ```codesi
 numbers = [1, 2, 3, 4, 5]
 
-// Sum all numbers
+// Sum all numbers (English)
 sum = numbers.reduce(lambda(acc, x) -> acc + x, 0)
+likho(sum)    // 15
+
+// Hindi version
+sum = numbers.combine(lambda(acc, x) -> acc + x, 0)
 likho(sum)    // 15
 
 // Product
@@ -599,6 +647,7 @@ sum = numbers.reduce(lambda(acc, x) -> acc + x)
 likho(sum)    // 15
 ```
 
+**Aliases**: `reduce`, `combine`  
 **Parameters**: 
 - `function`: Accumulator function (acc, current)
 - `initial` (optional): Starting value
@@ -611,7 +660,11 @@ Join array elements into string.
 
 ```codesi
 arr = ["apple", "banana", "orange"]
-text = arr.join(", ")
+text = arr.join(", ")           // English
+likho(text)    // "apple, banana, orange"
+
+// Hindi version
+text = arr.jodo(", ")
 likho(text)    // "apple, banana, orange"
 
 // Default separator is comma
@@ -619,6 +672,7 @@ numbers = [1, 2, 3]
 likho(numbers.join())    // "1,2,3"
 ```
 
+**Aliases**: `join`, `jodo`  
 **Parameters**: Separator string (default: ",")  
 **Returns**: Joined string
 
@@ -629,7 +683,11 @@ Extract portion of array.
 
 ```codesi
 arr = [1, 2, 3, 4, 5]
-subset = arr.slice(1, 4)
+subset = arr.slice(1, 4)     // English
+likho(subset)    // [2, 3, 4]
+
+// Hindi version
+subset = arr.cutkr(1, 4)
 likho(subset)    // [2, 3, 4]
 
 // From index to end
@@ -637,6 +695,7 @@ end_part = arr.slice(2)
 likho(end_part)    // [3, 4, 5]
 ```
 
+**Aliases**: `slice`, `cutkr`  
 **Parameters**: 
 - `start`: Starting index
 - `end` (optional): Ending index (exclusive)
@@ -649,10 +708,16 @@ Reverse array in place.
 
 ```codesi
 arr = [1, 2, 3, 4, 5]
-arr.reverse()
+arr.reverse()          // English
+likho(arr)    // [5, 4, 3, 2, 1]
+
+// Hindi version also works
+arr = [1, 2, 3, 4, 5]
+arr.ulta()
 likho(arr)    // [5, 4, 3, 2, 1]
 ```
 
+**Aliases**: `reverse`, `ulta`  
 **Returns**: Reversed array (modifies original)
 
 ---
@@ -662,7 +727,12 @@ Sort array in place.
 
 ```codesi
 arr = [5, 2, 8, 1, 9]
-arr.sort()
+arr.sort()            // English
+likho(arr)    // [1, 2, 5, 8, 9]
+
+// Hindi version
+arr = [5, 2, 8, 1, 9]
+arr.arrange()
 likho(arr)    // [1, 2, 5, 8, 9]
 
 // Strings
@@ -671,6 +741,7 @@ names.sort()
 likho(names)    // ["Amit", "Priya", "Raj"]
 ```
 
+**Aliases**: `sort`, `arrange`  
 **Returns**: Sorted array (modifies original)
 
 ---

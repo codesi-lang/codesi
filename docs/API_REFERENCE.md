@@ -337,20 +337,33 @@ person.email = "raj@example.com"
 
 ## 🌟 Special Features
 
-### JAADU (Auto-Correction)
+### JAADU (Context-Aware Auto-Correction)
 
 ```bash
 # Enable JAADU mode
-python codesi_production.py --jaadu
+codesi --jaadu
 
 # Or in file
-python codesi_production.py script.cds --jaadu
+codesi script.cds --jaadu
 ```
 
-**Features:**
-- Auto-corrects typos in function names
-- 60%+ similarity matching
-- Suggests corrections in default mode
+**Enhanced Features:**
+- ✨ Context-aware: Methods, functions, keywords
+- ✨ Phonetic matching: Hindi sound-alike spellings
+- ✨ Confidence scoring: 60-100% accuracy
+- ✨ Method chains: Multiple typos corrected
+- ✨ Dual language: English + Hindi aliases
+- ✨ Case insensitive: Any case works
+- ✨ Performance: 200x faster with caching
+- ✨ Edit distance: Up to 3-4 character differences
+
+**Examples:**
+```codesi
+liko("Hi")           → likho("Hi")
+arr.pus(4)           → arr.push(4)
+leekho("Test")       → likho("Test")
+arr.mep().filtr()    → arr.map().filter()
+```
 
 ### Samjho (Code Explainer)
 

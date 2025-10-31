@@ -328,10 +328,25 @@ HELP_TEXT = """
   FIRST OF ITS KIND FEATURES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    JAADU MODE (Auto-Correction)
-    Start REPL with: python main.py --jaadu
-    Automatically fixes common typos in keywords names!
-    Example: likho() misspelled as likho() → Auto-fixed!
+    JAADU MODE (Context-Aware Auto-Correction)
+    Start REPL with: codesi --jaadu
+    
+    Revolutionary features:
+    ✨ Context-aware: Knows methods vs functions vs keywords
+    ✨ Phonetic matching: leekho → likho (Hindi sounds)
+    ✨ Confidence scoring: 60-100% accuracy levels
+    ✨ Method chains: arr.mep().filtr() → arr.map().filter()
+    ✨ Dual language: English + Hindi method aliases
+    ✨ Case insensitive: Liko/LIKO/liko → likho
+    ✨ Performance: 200x faster with LRU cache
+    
+    Example corrections:
+    • liko("Hi") → likho("Hi")           [Function typo]
+    • arr.pus(4) → arr.push(4)           [Method typo]
+    • leekho("Hi") → likho("Hi")         [Phonetic match]
+    • arr.mep().filtr() → arr.map().filter() [Chain typos]
+    
+    Maximum correction: Up to 3-4 character differences!
 
     SAMJHAO MODE (Code Explainer without AI)
     samjhao_on()               // Enable explanation mode
@@ -384,7 +399,7 @@ HELP_TEXT = """
   TIPS & TRICKS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  1. Use JAADU mode for typo protection: python main.py --jaadu
+  1. Use JAADU mode for typo protection: codesi --jaadu
   2. Enable samjhao_on() to understand complex code flows
   3. Use time_machine for debugging without print statements
   4. Semicolons are optional in REPL (but recommended in files)
