@@ -1,6 +1,6 @@
 time_machine_on(5); // Keep last 5 snapshots
 
-const counter = 0;
+counter = 0;
 likho("Initial counter: ", counter);
 
 counter = 1;

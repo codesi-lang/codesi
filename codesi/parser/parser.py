@@ -102,20 +102,24 @@ class CodesiParser:
         elif token.type == TokenType.THROW:
             return self.parse_throw_statement()
         elif token.type == TokenType.IDENTIFIER:
-            # Check if it's old syntax: x ke liye arr mein
-            if token.type == TokenType.IDENTIFIER:
-             # Check if it's switch-case: var ke case mein
-                if (self.peek().type == TokenType.KE and 
-                    self.peek(2).type == TokenType.CASE):
-                    return self.parse_switch_case()
-                else:
-                    expr = self.parse_expression()
-                    self.skip_semicolon()
-                    return expr
+            # Check if it's old foreach syntax: x ke liye arr mein
+            if (self.peek().type == TokenType.KE and 
+                self.peek(2).type == TokenType.LIYE):
+                return self.parse_old_for_loop()
+            # Check if it's switch-case: var ke case mein
+            elif (self.peek().type == TokenType.KE and 
+                self.peek(2).type == TokenType.CASE):
+                return self.parse_switch_case()
+            else:
+                # Regular expression statement
+                expr = self.parse_expression()
+                self.skip_semicolon()
+                return expr
         
         expr = self.parse_expression()
         self.skip_semicolon()
         return expr
+    
     
     def skip_semicolon(self):
         if self.current_token().type == TokenType.SEMICOLON:
