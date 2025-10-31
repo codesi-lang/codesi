@@ -6,7 +6,7 @@ class CodesiJaadu:
     
     def __init__(self):
         self.hinglish_keywords = {
-            'likho','time_machine_status', 'time_machine_on', 'time_machine_off', 'peeche', 'aage', 'timeline', 'samjhao_on', 'samjhao_off', 'samjhao','input_lo', 'float_lo', 'int_lo', 'dikhao', 'batao', 'input', 'pucho', 'karya', 'static','import_karo','as', 'in' 'lo',
+            'likho','time_machine_status', 'time_machine_on', 'time_machine_off', 'peeche', 'aage', 'timeline', 'samjhao_on', 'samjhao_off', 'samjhao','input_lo', 'float_lo', 'int_lo', 'batao', 'karya', 'static','import_karo','as', 'in' 'lo',
             'agar', 'nahi_to', 'ya_phir', 'jabtak', 'liye', 'karo',
             'karya', 'vapas', 'break', 'continue', 'class', 'banao',
             'ye', 'super', 'extends', 'new', 'try', 'catch', 'finally',
